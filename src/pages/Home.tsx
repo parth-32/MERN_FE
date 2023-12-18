@@ -39,7 +39,6 @@ const Home = () => {
   const handleShow = () => setShow(true);
 
   const saveHandler = (formData: { title: string; description: string }) => {
-    console.log("formData===", formData.title?.trim().length);
     if (
       formData.title?.trim().length === 0 ||
       formData.description?.trim().length === 0
@@ -55,6 +54,7 @@ const Home = () => {
       addData(formData)
         .then((newData) => {
           setContentData((preData) => [...preData, newData]);
+          setShow(false);
           setToastData({
             showToast: true,
             title: "Added Data",
@@ -64,7 +64,6 @@ const Home = () => {
         })
         .catch((e) => console.log(e));
 
-      setShow(false);
     }
   };
 

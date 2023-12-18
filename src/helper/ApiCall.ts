@@ -9,7 +9,7 @@ export interface Contents{
 
 const axiosInstance = ()=> {
     return axios.create({
-      baseURL: 'http://localhost:3001/api/content',
+      baseURL: 'https://mern-be-xpfl.onrender.com/api/content',
       headers: {
         'Content-Type': 'application/json',
       },
