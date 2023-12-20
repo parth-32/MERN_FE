@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { ListGroup } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
@@ -10,8 +10,13 @@ interface IData {
   deleteHandler: (id: string) => void;
 }
 
-const ListItem: FC<IData> = ({ id, title, description, deleteHandler}) => {
+const ListItem: FC<IData> = ({ id, title, description, deleteHandler }) => {
+  const [isDeleting, setIsDeleting] = useState(false);
 
+  const deleteItemHandler = () => {
+    deleteHandler(id);
+    setIsDeleting(true);
+  };
 
   return (
     <>
@@ -27,10 +32,11 @@ const ListItem: FC<IData> = ({ id, title, description, deleteHandler}) => {
           <ButtonGroup>
             <Button
               size='sm'
-              onClick={(e) => deleteHandler(id)}
-              variant='secondary'
+              onClick={deleteItemHandler}
+              variant='outline-danger'
+              disabled={isDeleting}
             >
-              Delete
+              {isDeleting ? 'Deleting' : 'Delete'}
             </Button>
           </ButtonGroup>
         </div>
